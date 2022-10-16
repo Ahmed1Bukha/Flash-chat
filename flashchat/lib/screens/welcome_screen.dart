@@ -75,23 +75,11 @@ class _WelcomeScreenState extends State<WelcomeScreen>
             SizedBox(
               height: 48.0,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                elevation: 5.0,
-                color: Colors.lightBlueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, LoginScreen.id);
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Log In',
-                  ),
-                ),
-              ),
+            roundedButton(title: "Log in",
+            color: Colors.lightBlueAccent,
+            onpressed: (){
+              Navigator.pushNamed(context, LoginScreen.id);
+            },
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 16.0),
@@ -112,6 +100,34 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class roundedButton extends StatelessWidget {
+
+final Function onpressed;
+final String title;
+final Color color;
+roundedButton({this.color, this.title, @required this.onpressed})
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 16.0),
+      child: Material(
+        elevation: 5.0,
+        color: this.color,
+        borderRadius: BorderRadius.circular(30.0),
+        child: MaterialButton(
+          onPressed: this.onpressed,
+          minWidth: 200.0,
+          height: 42.0,
+          child: Text(
+           this.title,
+          ),
         ),
       ),
     );
